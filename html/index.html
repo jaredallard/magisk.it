@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- COMMON TAGS -->
+    <meta charset="utf-8">
+    <title>Magisk.it</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Search Engine -->
+    <meta name="description" content="Build Magisk Modules from Github">
+    <meta name="image" content="https://apprecs.org/gp/images/app-icons/300/05/com.topjohnwu.magisk.jpg">
+
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="Magisk.it">
+    <meta itemprop="description" content="Build Magisk Modules from Github">
+    <meta itemprop="image" content="https://apprecs.org/gp/images/app-icons/300/05/com.topjohnwu.magisk.jpg">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Magisk.it">
+    <meta name="twitter:description" content="Build Magisk Modules from Github">
+    <meta name="twitter:site" content="@jaredallard">
+    <meta name="twitter:creator" content="@jaredallard">
+    <meta name="twitter:image:src" content="https://apprecs.org/gp/images/app-icons/300/05/com.topjohnwu.magisk.jpg">
+
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="Magisk.it">
+    <meta name="og:description" content="Build Magisk Modules from Github">
+    <meta name="og:image" content="https://apprecs.org/gp/images/app-icons/300/05/com.topjohnwu.magisk.jpg">
+    <meta name="og:url" content="https://magisk.it">
+    <meta name="og:site_name" content="Magisk.it">
+    <meta name="fb:admins" content="1439694181">
+    <meta name="og:type" content="website">
+
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <div class='container'>
+      <br />
+      <div class='header'>
+        <h1>Magisk.it</h1>
+        <p>Build Magisk Modules straight from Github.</p>
+      </div>
+
+      <div class='search'>
+        <label for='github'>Github Link</label>
+        <input id='github' class='form-control' type='input' placeholder='Github URL (https://github.com/...)' required autocomplete="off"></input>
+        <br />
+
+        <div id='link-container' class='link'>
+          Magisk Module: <a id='link' href=''>{{link}}</a>
+          <br />
+        </div>
+
+        <button id='submit' class='btn btn-success form-control' type='submit'>Submit</button>
+      </div>
+
+      <div class='copyright'>
+        &copy; 2017 <a href="https://jaredallard.me">Jared Allard</a> | MIT License
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $('#submit').on('click', function() {
+        var link = $('#github').val()
+        var split_link = link.split('/')
+
+        if(!split_link[3] || !split_link[4]) return console.log('invalid input')
+
+        var parsed = split_link[3]+'/'+split_link[4]
+
+        $('#link').attr('href', 'builds/'+parsed)
+        $('#link').text(parsed+'.zip')
+        $('#link-container').show()
+        $('#github').attr('disabled', true)
+        $('#submit').hide()
+      })
+    </script>
+  </body>
+</html>
